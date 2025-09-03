@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bulk Employee Upload</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container py-5">
+
+  <h2 class="mb-4">Bulk Employee Upload</h2>
+
+<% if (title) { %>
+  <div class="alert alert-info">
+    <strong><%= title %></strong>
+  </div>
+<% } %>
+
+<form action="/employees/bulk" method="post" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label for="csvfile" class="form-label">Choose CSV file:</label>
+    <input type="file" class="form-control" name="csvfile" id="csvfile" accept=".csv" required>
+  </div>
+  <button type="submit" class="btn btn-primary">Upload</button>
+  <a href="/employees" class="btn btn-secondary">Back to details</a>
+</form>
+
+<% if (errors && errors.length > 0) { %>
+  <div class="alert alert-danger mt-4">
+    <ul class="mb-0">
+      <% errors.forEach(function(error) { %>
+        <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+  </div>
+<% } %>
+
+</body>
+</html>
