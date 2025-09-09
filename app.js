@@ -5,6 +5,8 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const employeeRoute = require("./routes/employeeRoute");
 const employeeApiRoutes = require("./routes/employeeApiRoutes");
+const adminRoute = require('./routes/adminRoute');
+const clientRoute = require('./routes/clientRoute');
 
 const app = express();
 
@@ -24,7 +26,12 @@ app.set("views", path.join(__dirname,"views"));
 
 //Routes
 app.get("/",(req,res)=>
-    res.redirect("/employees"));
+    res.redirect("/home"));
+app.get("/home",(req,res)=>{
+    res.render("home");
+});
+app.use("/admin1", adminRoute);
+app.use("/client1",clientRoute)
 app.use("/employees",employeeRoute);
 app.use("/api/employees",employeeApiRoutes);
 

@@ -82,7 +82,7 @@ exports.list = async (req, res) => {
   const q = req.query.q || ""; // search query
   const page = parseInt(req.query.page) || 1; // current page
   const limit = parseInt(req.query.page) || 10;
-  const perPage = 10; // how many employees per page
+  const perPage = 15; // how many employees per page
 
   const filter = q
     ? { $or: [{ name: new RegExp(q, "i") }, { email: new RegExp(q, "i") }] }
